@@ -59,7 +59,7 @@ const PlayPause = ({ state }) => <svg className={cx(state === PLAY && PlayMerge,
 </svg>;
 
 const PlayStop = (props) => {
-  return <BigButton><PlayPause {...props} /></BigButton>;
+  return <BigButton onClick={props.onToggle}><PlayPause {...props} /></BigButton>;
 }
 
 export { PlayStop };

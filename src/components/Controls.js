@@ -45,30 +45,12 @@ const Controls = memo(() => {
         default:
           console.warn(`WARN: unhandled player state action!`);
       }
-
-
-      // if (playedPromise) {
-      //   playedPromise.catch((e) => {
-      //     console.error('error:', e)
-      //     if (e.name === 'NotAllowedError' || e.name === 'NotSupportedError') {
-      //       console.error('error.name:', e.name);
-      //     }
-      //   }).then(() => {
-      //     console.log(`All good =)`);
-      //   });
-      // } else {
-      //   console.log(`reject`);
-      //   playedPromise.reject();
-      // }
     } catch (err) {
       console.log(`Error:`, err);
     }
   }, []);
 
-  useEffect(() => {
-    console.log(`useEffect`, state, player);
-    interactPlayer(player, state);
-  }, [player, state]);
+  useEffect(() => interactPlayer(player, state), [interactPlayer, player, state]);
 
   const onPlay = useCallback(() => setState(PLAY), [setState]);
   const onPause = useCallback(() => setState(PAUSE), [setState]);
@@ -90,7 +72,7 @@ const Controls = memo(() => {
     <div>
       {state}
     </div>
-    <PlayStop onClick={onToggleSong} />
+    <PlayStop onToggle={onToggleSong} state={state} />
     <button onClick={onPlay}>Play</button>
     <button onClick={onPause}>Pause</button>
     <button onClick={onChangeVolume}>{`Volume: ${volume}%`}</button>
