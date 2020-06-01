@@ -35,6 +35,8 @@ const BigButton = styled.div`
       justify-content: center;
       width: 20vmin;
       height: 20vmin;
+      min-height: 150px;
+      min-width: 150px;
       border: 1px solid gray;
       animation: 1s ease infinite alternate;
       border-radius: 50%;

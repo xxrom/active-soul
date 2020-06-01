@@ -5,7 +5,7 @@ import { Background, Controls, Animation } from './components';
 const App = memo(() => {
   return (
     <Background>
-      <Animation />
+      {/* <Animation /> */}
       <Controls />
     </Background>);
 });

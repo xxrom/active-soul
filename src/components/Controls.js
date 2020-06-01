@@ -1,6 +1,7 @@
 import React, { memo, useState, useCallback, useEffect } from 'react';
 
 import { PlayStop } from '../common/PlayStop';
+import { Volume } from '.';
 import song from '../assets/1.webm';
 
 export const PLAY = 'PLAY';
@@ -59,13 +60,13 @@ const Controls = memo(() => {
 
   const onChangeVolume = useCallback(() => {
     if (player.volume === 1) {
-      player.volume = 0.25;
+      player.volume = 0;
     } else {
       player.volume += 0.25;
     }
 
     setVolume(player.volume * 100);
-  }, [player, setVolume]);
+  }, [player.volume, setVolume]);
 
 
   return (<div>
@@ -73,9 +74,15 @@ const Controls = memo(() => {
       {state}
     </div>
     <PlayStop onToggle={onToggleSong} state={state} />
-    <button onClick={onPlay}>Play</button>
-    <button onClick={onPause}>Pause</button>
-    <button onClick={onChangeVolume}>{`Volume: ${volume}%`}</button>
+    <div>
+
+      <button onClick={onPlay}>Play</button>
+      <button onClick={onPause}>Pause</button>
+    </div>
+    <div>
+      <button onClick={onChangeVolume}>{`Volume: ${volume}%`}</button>
+    </div>
+    <Volume setVolume={setVolume} volume={volume} />
   </div>);
 });
 
