@@ -18,7 +18,7 @@ const Volume = ({ setVolume, volume }) => {
   }
 
   return <RangeSlider>
-    <Range onFocus={onFocusThumb} onBlur={onBlurThumb} onChange={onChange} type="range" min="0" max="100" value={volume} step="5" />
+    <Range onFocus={onFocusThumb} onBlur={onBlurThumb} onChange={onChange} type="range" min="0" max="100" value={volume} step="1" />
     <Thumb style={{ left: `${((rangeWidth - ThumbWidth) / 100) * volume}px` }}>{volume}</Thumb>
     {isFocusThumb && <Drop style={{ left: `${((rangeWidth - ThumbWidth) / 100) * volume}px` }} />}
   </RangeSlider>;
@@ -55,7 +55,8 @@ const Thumb = styled.span`
 `;
 
 const shade10 = '#aaa';
-const shade1 = '#d7dcdf';
+const shade1 = '#e1e7eb';
+const shade5 = '#d7dcdf';
 const shade0 = '#fff';
 const teal = '#1abc9c';
 
@@ -66,6 +67,7 @@ const rangeHandleColorHover = teal;
 const rangeHandleSize = ThumbWidth;
 
 const rangeTrackColor = shade1;
+const rangeTrackColorHover = shade5;
 const rangeTrackHeight = 10;
 
 const rangeLabelColor = shade10;
@@ -77,6 +79,7 @@ const RangeSlider = styled.div`
   align-items: center;
   width: ${rangeWidth}px;
   height: 30px;
+  top: 5px;
 `;
 
 const Range = styled.input`
@@ -89,8 +92,13 @@ const Range = styled.input`
   padding: 0;
   margin: 0;
   z-index: 1;
+  cursor: pointer;
 
-  /* // Range Handle */
+  &:hover {
+    background: ${rangeTrackColorHover};
+  }
+
+  /* Range Handle */
   &::-webkit-slider-thumb {
     appearance: none;
     width: ${rangeHandleSize}px;

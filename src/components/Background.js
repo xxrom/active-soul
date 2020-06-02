@@ -12,7 +12,7 @@ const BackgroundDiv = styled.div`
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  border: 2px dashed red;
+  border: 1px solid gray;
   box-sizing: border-box;
 `;
 

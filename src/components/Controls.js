@@ -15,6 +15,10 @@ const Controls = memo(() => {
   const [volume, setVolume] = useState(25);
 
   useEffect(() => {
+    player.volume = volume / 100;
+  }, [player, volume]);
+
+  useEffect(() => {
     if (!player) {
       return;
     }
@@ -27,19 +31,12 @@ const Controls = memo(() => {
     }
 
     try {
-      console.log(`player inited`, player);
-      // let playedPromise;
-
       switch (state) {
         case PLAY:
-          console.log(`play!`);
-          // playedPromise =
           player.play();
           break;
 
         case PAUSE:
-          console.log(`stop!`);
-          // playedPromise =
           player.pause();
           break;
 
@@ -53,35 +50,16 @@ const Controls = memo(() => {
 
   useEffect(() => interactPlayer(player, state), [interactPlayer, player, state]);
 
-  const onPlay = useCallback(() => setState(PLAY), [setState]);
-  const onPause = useCallback(() => setState(PAUSE), [setState]);
+  // const onPlay = useCallback(() => setState(PLAY), [setState]);
+  // const onPause = useCallback(() => setState(PAUSE), [setState]);
   const onToggleSong = useCallback(() => state === PLAY ? setState(PAUSE) : setState(PLAY), [setState, state]);
 
-
-  const onChangeVolume = useCallback(() => {
-    if (player.volume === 1) {
-      player.volume = 0;
-    } else {
-      player.volume += 0.25;
-    }
-
-    setVolume(player.volume * 100);
-  }, [player.volume, setVolume]);
-
-
   return (<div>
-    <div>
-      {state}
-    </div>
     <PlayStop onToggle={onToggleSong} state={state} />
-    <div>
-
+    {/* <div>
       <button onClick={onPlay}>Play</button>
       <button onClick={onPause}>Pause</button>
-    </div>
-    <div>
-      <button onClick={onChangeVolume}>{`Volume: ${volume}%`}</button>
-    </div>
+    </div> */}
     <Volume setVolume={setVolume} volume={volume} />
   </div>);
 });
