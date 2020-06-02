@@ -70,9 +70,6 @@ const rangeTrackColor = shade1;
 const rangeTrackColorHover = shade5;
 const rangeTrackHeight = 10;
 
-const rangeLabelColor = shade10;
-const rangeLabelWidth = 60;
-
 const RangeSlider = styled.div`
   position: relative;
   display: flex;
@@ -107,6 +104,7 @@ const Range = styled.input`
     background: ${rangeHandleColor};
     cursor: pointer;
     transition: background .15s ease-in-out;
+    border: 2px solid white;
 
     &:hover {
       background: ${rangeHandleColorHover};
@@ -144,28 +142,3 @@ const Range = styled.input`
     }
   }
 `;
-
-// const RangeValue = styled.div`
-//   display: block;
-//   position: relative;
-//   width: ${rangeLabelWidth};
-//   color: ${shade0};
-//   line-height: 20px;
-//   text-align: center;
-//   border-radius: 3px;
-//   background: ${rangeLabelColor};
-//   padding: 5px 10px;
-//   margin-left: 8px;
-
-//   &:after {
-//     position: absolute;
-//     top: 8px;
-//     left: -7px;
-//     width: 0;
-//     height: 0;
-//     border-top: 7px solid transparent;
-//     border-right: 7px solid ${rangeLabelColor};
-//     border-bottom: 7px solid transparent;
-//     content: '';
-//   }
-// `;

@@ -1,4 +1,5 @@
 import React, { memo, useState, useCallback, useEffect } from 'react';
+import { styled } from 'linaria/react';
 
 import { PlayStop } from '../common/PlayStop';
 import { Volume } from '.';
@@ -54,14 +55,21 @@ const Controls = memo(() => {
   // const onPause = useCallback(() => setState(PAUSE), [setState]);
   const onToggleSong = useCallback(() => state === PLAY ? setState(PAUSE) : setState(PLAY), [setState, state]);
 
-  return (<div>
+  return (<Center>
     <PlayStop onToggle={onToggleSong} state={state} />
     {/* <div>
       <button onClick={onPlay}>Play</button>
       <button onClick={onPause}>Pause</button>
     </div> */}
     <Volume setVolume={setVolume} volume={volume} />
-  </div>);
+  </Center>);
 });
+
+const Center = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 export { Controls };
