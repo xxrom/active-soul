@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
+import colors from '../colors';
 
 import { styled } from 'linaria/react';
 
@@ -19,7 +20,7 @@ const Volume = ({ setVolume, volume }) => {
 
   return <RangeSlider>
     <Range onFocus={onFocusThumb} onBlur={onBlurThumb} onChange={onChange} type="range" min="0" max="100" value={volume} step="1" />
-    <Thumb style={{ left: `${((rangeWidth - ThumbWidth) / 100) * volume}px` }}>{volume}</Thumb>
+    {isFocusThumb && <Thumb style={{ left: `${((rangeWidth - ThumbWidth) / 100) * volume}px` }}>{volume}</Thumb>}
     {isFocusThumb && <Drop style={{ left: `${((rangeWidth - ThumbWidth) / 100) * volume}px` }} />}
   </RangeSlider>;
 }
@@ -29,14 +30,14 @@ export { Volume };
 const ThumbWidth = 30;
 
 const Drop = styled.span`
-    position: absolute;
-		box-sizing: content-box;
-		width: 30px;
-		height: 30px;
-		border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-		background: gray;
-		transform: rotateZ(-45deg);
-    top: ${1.22 * ThumbWidth}px;
+  position: absolute;
+  box-sizing: content-box;
+  width: 30px;
+  height: 30px;
+  border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+  background: gray;
+  transform: rotateZ(-45deg);
+  top: ${1.22 * ThumbWidth}px;
 `;
 
 const Thumb = styled.span`
@@ -58,7 +59,7 @@ const shade10 = '#aaa';
 const shade1 = '#e1e7eb';
 const shade5 = '#d7dcdf';
 const shade0 = '#fff';
-const teal = '#1abc9c';
+const teal = colors.active;
 
 const rangeWidth = 150;
 
@@ -84,12 +85,13 @@ const Range = styled.input`
   width: 100%;
   height: ${rangeTrackHeight}px;
   border-radius: 5px;
-  background: ${rangeTrackColor};
+  background: #00000000;
   outline: none;
   padding: 0;
   margin: 0;
   z-index: 1;
   cursor: pointer;
+  transition: background .25s ease-in-out;
 
   &:hover {
     background: ${rangeTrackColorHover};
@@ -103,7 +105,7 @@ const Range = styled.input`
     border-radius: 50%;
     background: ${rangeHandleColor};
     cursor: pointer;
-    transition: background .15s ease-in-out;
+    transition: background .25s ease-in-out;
     border: 2px solid white;
 
     &:hover {
@@ -112,7 +114,9 @@ const Range = styled.input`
   }
 
   &:active::-webkit-slider-thumb {
-    background: ${rangeHandleColorHover};
+    &:hover {
+      background: ${rangeHandleColorHover};
+    }
   }
 
   &::-moz-range-thumb {

@@ -2,6 +2,7 @@ import React from 'react';
 import { css, cx } from 'linaria';
 import { styled } from 'linaria/react';
 import { PLAY } from '../components';
+import colors from '../colors';
 
 const PlayMerge = css`
   padding-left: 12%;
@@ -13,8 +14,9 @@ const SVGcss = css`
   height: 50%;
   width: 50%;
 `;
+
 const BtnSvg = styled.polygon`
-    fill: #999;
+    fill: ${colors.passiveFill};
     animation: beat 3s ease infinite alternate;
     transform-origin: 50% 50%;
 
@@ -45,7 +47,7 @@ const BigButton = styled.div`
       cursor: pointer;
 
       ${BtnSvg} {
-        fill: #a41d33;
+        fill: ${colors.activeFill};
         opacity: 1;
       }
     }
