@@ -52,7 +52,9 @@ const ModSwitcher = ({
 
   useEffect(() => {
     handleChangeMode(currentMode)();
-  }, []);
+  },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []);
 
 
   const handleChangeMode = useCallback((modeName) => () => {

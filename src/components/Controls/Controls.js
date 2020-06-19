@@ -50,7 +50,7 @@ const Controls = memo(({ setTime }) => {
     } catch (err) {
       console.log(`Error:`, err);
     }
-  }, []);
+  }, [setTime]);
 
   useEffect(() => interactPlayer(player, state), [interactPlayer, player, state]);
 
