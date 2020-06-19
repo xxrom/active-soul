@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
-import colors from '../colors';
-
+import React, { useState, useCallback } from 'react';
 import { styled } from 'linaria/react';
+
+import colors from '../../colors';
 
 const Volume = ({ setVolume, volume }) => {
   const [isFocusThumb, setIsFocusThumb] = useState(false);
-  const onChange = (e) => {
-    console.log(e);
-    console.log(e.target.value);
+  const onChange = useCallback((e) => {
     setVolume(e.target.value);
-  }
+  }, [setVolume]);
 
   const onFocusThumb = () => {
     setIsFocusThumb(true);
@@ -55,10 +53,9 @@ const Thumb = styled.span`
   color: white;
 `;
 
-const shade10 = '#aaa';
-const shade1 = '#e1e7eb';
-const shade5 = '#d7dcdf';
-const shade0 = '#fff';
+const shade10 = colors.hidden;
+const shade5 = colors.hidden;
+const shade0 = '#ffffff00';
 const teal = colors.active;
 
 const rangeWidth = 150;
@@ -67,7 +64,7 @@ const rangeHandleColor = shade10;
 const rangeHandleColorHover = teal;
 const rangeHandleSize = ThumbWidth;
 
-const rangeTrackColor = shade1;
+// const rangeTrackColor = shade1;
 const rangeTrackColorHover = shade5;
 const rangeTrackHeight = 10;
 

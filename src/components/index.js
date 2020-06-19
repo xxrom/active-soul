@@ -1,6 +1,4 @@
-import { Animation } from './Animation';
-import { Background } from './Background';
-import { Controls, PLAY, PAUSE } from './Controls';
-import { Volume } from './Volume';
+import { Background } from './Background/Background';
+import { Controls, PLAY, PAUSE } from './Controls/Controls';
 
-export { Animation, Background, Controls, PLAY, PAUSE, Volume };
+export { Background, Controls, PLAY, PAUSE };
